@@ -17,6 +17,7 @@ typedef struct{
 
 int i=0,newcla=0,newalu=0;
 Clas *clas=NULL;
+FILE *arq;
 
 void hub()
 {
@@ -98,7 +99,8 @@ void turm(int turma)
 {
         int j=0,x;
         char mate[8][20]={"Math","Portuguese","Cience","History","Geography","P.E.","Arts","English"};
-        printf("%d Ano\n\n",turma+1);
+        printf("\n%d Ano\n\n",turma+1);
+        printf("Teacher: %s\n\n",clas[turma].prof);
         while (j<clas[turma].Capacidade){
             if (clas[turma].Qtd>j){
                 printf("\t%s\n", clas[turma].alu[j].name);
@@ -109,10 +111,37 @@ void turm(int turma)
             j++;
         }
 }
+void save()
+{
+    fwrite(&newcla, sizeof(int), 1, arq);
+    for (i=0;i<newcla;i++){
+        fwrite(&clas[i].Capacidade,sizeof(int),1,arq);
+        fwrite(&clas[i].Qtd,sizeof(int),1,arq);
+        fwrite(&clas[i].prof,sizeof(char),50,arq);
+        fwrite(clas[i].alu,sizeof(Student),clas[i].Qtd,arq);
+    }
+}
+void load()
+{
+    if (fread(&newcla,sizeof(int),1,arq)!=1)
+        return;
+    clas=malloc(newcla*sizeof(Clas));
+    for (i=0;i<newcla;i++){
+        fread(&clas [i].Capacidade, sizeof(int),1,arq);
+        fread(&clas[i].Qtd,sizeof(int),1,arq);
+        fread(&clas[i].prof,sizeof(char),50,arq);
+        clas[i].alu=malloc(clas[i].Capacidade*sizeof(Student));
+        fread(clas[i].alu,sizeof(Student),clas[i].Qtd,arq);
+    }
+}
 int main()
 {
     setlocale(LC_ALL, "");
     int start,saida=0,chose;
+    arq=fopen("save","rb+");
+    if (arq==NULL)
+        arq=fopen("save","wb+");
+    load();
 do{
         chose=0;
         hub();
@@ -121,6 +150,7 @@ do{
         switch (start){
     case 1:
         int Chose=0;
+        fread(&clas[chose],sizeof(Clas),1,arq);
         if (clas==NULL){
             printf("No records foud.");
             break;
@@ -139,6 +169,8 @@ do{
         do{
         getchar();
         printf("Which Class?");
+        for (i=0;i<newcla;i++)
+            printf("Class %d°\n", i+1);
         scanf(" %d",&chose);
         }while(chose>newcla||chose<1);
         cad(&clas[chose-1]);
@@ -148,6 +180,9 @@ do{
         cadclas(&clas[newcla-1]);
         break;
     case 4:
+    rewind(arq);
+    save();
+    fclose(arq);
     printf("\n\tQuitting...\n");
     saida=1;
     }
