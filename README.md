@@ -22,6 +22,7 @@ This project was created to practice data structures, dynamic memory allocation,
 - Dynamic Memory (malloc/realloc/free)
 - Structs
 - Pointers
+- Data Save
 
 ## Concepts Practiced
 
@@ -31,6 +32,7 @@ This project was created to practice data structures, dynamic memory allocation,
 - Functions
 - Input validation
 - Console interface
+-Binary Files
 
 ## Project Structure
 
