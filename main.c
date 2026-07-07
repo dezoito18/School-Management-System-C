@@ -150,7 +150,6 @@ do{
         switch (start){
     case 1:
         int Chose=0;
-        fread(&clas[chose],sizeof(Clas),1,arq);
         if (clas==NULL){
             printf("No records foud.");
             break;
