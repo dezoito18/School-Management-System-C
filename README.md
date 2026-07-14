@@ -1,68 +1,42 @@
-# School Management System
+# School Management System - C
 
-A school management system developed in C.
-
-This project was created to practice data structures, dynamic memory allocation, pointers, and modular programming in C through a real-world application.
+A simple School Management System developed in C.
 
 ## Features
 
-- Create classes
+- Create school classes
+- Register teachers
 - Register students
-- Enroll students in classes
-- Record grades
-- Calculate averages
-- Display student information
+- Store grades for 8 subjects
+- Display class information
+- Save and load data using binary files
 - Dynamic memory allocation
-- Struct-based data organization
+- Modular architecture using ADTs (TAD)
 
 ## Technologies
 
 - C
-- GCC
-- Dynamic Memory (malloc/realloc/free)
-- Structs
-- Pointers
-- Data Save
-
-## Concepts Practiced
-
-- Dynamic arrays
-- Nested structs
-- Memory management
-- Functions
-- Input validation
-- Console interface
--Binary Files
+- Dynamic Memory Allocation (`malloc`, `realloc`, `free`)
+- Binary Files (`fread`, `fwrite`)
+- Abstract Data Types (ADT/TAD)
 
 ## Project Structure
 
 ```
 main.c
+System.c
+System.h
 ```
 
-(or update this section if your project contains multiple source files)
+## Concepts Practiced
 
-## How to Compile
-
-Using GCC:
-
-```bash
-gcc main.c -o school
-```
-
-Run:
-
-```bash
-./school
-```
-
-Windows:
-
-```bash
-school.exe
-```
+- Structures (`struct`)
+- Pointers
+- Dynamic arrays
+- File handling
+- Modular programming
+- Abstract Data Types (ADT)
 
 ## Author
 
 Matheus Portela Nobre
-
